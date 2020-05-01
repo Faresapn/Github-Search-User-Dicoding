@@ -39,8 +39,8 @@ public interface Service {
    Call<ArrayList<FollowerResponse>> Follower(@Header("Authorization") String authorization,
                                        @Path("username") String username);
 
-   @DELETE("divisi/{id}")
-   Call<FollowingResponse> Following(@Header("Authorization") String authorization,
-                                         @Path("id") int id);
+   @GET("users/{username}/following")
+   Call<ArrayList<FollowingResponse>> Following(@Header("Authorization") String authorization,
+                                              @Path("username") String username);
 
 }

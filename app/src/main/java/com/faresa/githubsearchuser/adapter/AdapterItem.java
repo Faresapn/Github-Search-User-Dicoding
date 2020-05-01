@@ -1,5 +1,6 @@
 package com.faresa.githubsearchuser.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -81,6 +82,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
             nama = itemView.findViewById(R.id.textView);
             imageView = itemView.findViewById(R.id.imageView);
             itemView.setOnClickListener(new View.OnClickListener() {
+                   @SuppressLint("UseRequireInsteadOfGet")
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();

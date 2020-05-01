@@ -1,5 +1,6 @@
 package com.faresa.githubsearchuser.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +25,8 @@ import java.util.Objects;
 
 public class AdapterFollower extends RecyclerView.Adapter<AdapterFollower.ViewHolder> {
     private ArrayList<FollowerResponse> data = new ArrayList<>();
-    private FollowerFragment followerFragment;
 
+    private OnItemClickCallback onItemClickCallback;
     public void setData(ArrayList<FollowerResponse> data) {
         this.data.clear();
         this.data.addAll(data);
@@ -33,9 +34,8 @@ public class AdapterFollower extends RecyclerView.Adapter<AdapterFollower.ViewHo
     }
 
 
-    public AdapterFollower(FollowerFragment followerFragment) {
-        this.followerFragment = followerFragment;
-
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback;
     }
 
     @NonNull
@@ -55,6 +55,7 @@ public class AdapterFollower extends RecyclerView.Adapter<AdapterFollower.ViewHo
                 .into(holder.imageView);
 
         holder.nama.setText(item.getLogin());
+        holder.itemView.setOnClickListener(v -> onItemClickCallback.onItemClicked(data.get(holder.getAdapterPosition())));
     }
 
     @Override
@@ -69,18 +70,10 @@ public class AdapterFollower extends RecyclerView.Adapter<AdapterFollower.ViewHo
             super(itemView);
             nama = itemView.findViewById(R.id.textView);
             imageView = itemView.findViewById(R.id.imageView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        FollowerResponse followerResponse = data.get(position);
-                        Intent intent = new Intent(followerFragment.getContext(), DetailActivity.class);
-                        intent.putExtra("ID", followerResponse.getLogin());
-                        followerFragment.requireContext().startActivity(intent);
-                    }
-                }
-            });
         }
+
+    }
+    public interface OnItemClickCallback {
+        void onItemClicked(FollowerResponse followerResponse);
     }
 }

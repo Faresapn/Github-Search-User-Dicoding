@@ -1,5 +1,6 @@
 package com.faresa.githubsearchuser;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -46,42 +47,46 @@ public class FollowerFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_follower, container, false);
         recyclerView = v.findViewById(R.id.rv_follower);
         followerViewModel = ViewModelProviders.of(this).get(FollowerViewModel.class);
-        adapterItem = new AdapterFollower(followerFragment);
-
+        adapterItem = new AdapterFollower();
+        adapterItem.setOnItemClickCallback(new AdapterFollower.OnItemClickCallback() {
+            @Override
+            public void onItemClicked(FollowerResponse followerResponse) {
+                showSelectedItem(followerResponse);
+            }
+        });
         initRV();
         getData();
 
         return v;
     }
 
+
+
     private void getData() {
         followerViewModel.loadEvent(DetailActivity.currentuser);
         followerViewModel.getData().observe(getViewLifecycleOwner(), new Observer<ArrayList<FollowerResponse>>() {
             @Override
             public void onChanged(ArrayList<FollowerResponse> followerResponses) {
-
-                   adapterItem.setData(followerResponsess);
+                    adapterItem.setData(followerResponsess);
                     followerResponsess.addAll(followerResponses);
                     recyclerView.setAdapter(adapterItem);
                     adapterItem.notifyDataSetChanged();
-
-
             }
-
-
         });
     }
-
     private void initRV() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
     }
-
     @Override
     public void onResume() {
-
         super.onResume();
         followerViewModel.loadEvent(DetailActivity.currentuser);
 
+    }
+    private void showSelectedItem(FollowerResponse item) {
+        Intent intent = new Intent(getContext(), DetailActivity.class);
+        intent.putExtra("ID", item.getLogin());
+        startActivity(intent);
     }
 }
