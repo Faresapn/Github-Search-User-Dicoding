@@ -87,7 +87,7 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
                     if (position != RecyclerView.NO_POSITION) {
                         SearchData searchData = data.get(position);
                         Intent intent = new Intent(homeActivity, DetailActivity.class);
-                        intent.putExtra("ID", searchData.getId());
+                        intent.putExtra("ID", searchData.getLogin());
                         Objects.requireNonNull(homeActivity).startActivity(intent);
                     }
                 }

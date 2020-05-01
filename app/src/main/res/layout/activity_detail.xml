@@ -13,34 +13,34 @@
         android:padding="16dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_avatar_detail"
+            android:id="@+id/img_profile"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:civ_border_width="0.5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@color/colorPrimary" />
+            tools:src="@android:drawable/ic_menu_gallery" />
 
         <TextView
-            android:id="@+id/tv_name_detail"
+            android:id="@+id/name_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/iv_avatar_detail"
+            app:layout_constraintStart_toEndOf="@+id/img_profile"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Ahmad Nurhasan Hilmi" />
+            tools:text="Faresa Prasetyo N" />
 
         <TextView
-            android:id="@+id/tv_login_detail"
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/iv_avatar_detail"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_detail"
-            tools:text="nurhasanhilmi" />
+            app:layout_constraintStart_toEndOf="@+id/img_profile"
+            app:layout_constraintTop_toBottomOf="@+id/name_detail"
+            tools:text="faresapn" />
 
         <Button
             android:id="@+id/btn_favorite"
@@ -50,50 +50,50 @@
             android:text="Favorite"
             app:elevation="0dp"
             app:backgroundTint="@color/colorPrimary"
-            app:layout_constraintStart_toEndOf="@+id/iv_avatar_detail"
-            app:layout_constraintTop_toBottomOf="@+id/tv_login_detail" />
+            app:layout_constraintStart_toEndOf="@+id/img_profile"
+            app:layout_constraintTop_toBottomOf="@+id/username" />
 
         <TextView
-            android:id="@+id/tv_bio_detail"
+            android:id="@+id/bio_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_avatar_detail"
-            tools:text="Anti-Establishment" />
+            app:layout_constraintTop_toBottomOf="@+id/img_profile"
+            tools:text="motto hidup" />
 
 
         <TextView
-            android:id="@+id/tv_company_detail"
+            android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:drawableStart="@drawable/ic_company_black_24dp"
+            android:drawableStart="@drawable/ic_mail_black_18dp"
             android:drawablePadding="4dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_bio_detail"
-            tools:text="UPN Veteran Yogyakarta" />
+            app:layout_constraintTop_toBottomOf="@+id/bio_detail"
+            tools:text="faresaprasetyon@gmail.com" />
 
         <TextView
-            android:id="@+id/tv_location_detail"
+            android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_location_on_black_24dp"
+            android:drawableStart="@drawable/ic_gps_fixed_black_18dp"
             android:drawablePadding="4dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_detail"
-            tools:text="DI Yogyakarta, Indonesia" />
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            tools:text="Purbalingga" />
 
         <TextView
-            android:id="@+id/tv_website"
+            android:id="@+id/website"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorSecondary"
-            android:drawableStart="@drawable/ic_link_black_24dp"
+            android:textColor="#000"
+            android:drawableStart="@drawable/ic_link_black_18dp"
             android:drawablePadding="4dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_location_detail"
-            tools:text="nurhasanhilmi.blogspot.com" />
+            app:layout_constraintTop_toBottomOf="@+id/location"
+            tools:text="smktelkompwt.com" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
