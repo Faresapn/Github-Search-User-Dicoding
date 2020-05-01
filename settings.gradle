@@ -1,0 +1,2 @@
+rootProject.name='GithubSearchUser'
+include ':app'

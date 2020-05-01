@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">GithubSearchUser</string>
+    <string name="auth">1bb5e29e5bbf784ff05c6853434bcbc43a9a6c58</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="pencarian">Pencarian</string>
+    <string name="set">Pengaturan</string>
+    <string name="ups">Uups! Like No Data</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
