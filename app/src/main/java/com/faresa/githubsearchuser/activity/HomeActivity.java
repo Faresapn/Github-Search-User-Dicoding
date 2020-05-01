@@ -4,10 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +20,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.faresa.githubsearchuser.FollowerFragment;
+import com.faresa.githubsearchuser.FollowingFragment;
 import com.faresa.githubsearchuser.R;
 import com.faresa.githubsearchuser.adapter.AdapterItem;
 import com.faresa.githubsearchuser.pojo.search.SearchData;
 import com.faresa.githubsearchuser.viewmodel.SearchViewModel;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -27,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     SearchView svSearch;
     private SearchViewModel searchViewModel;
     private AdapterItem adapterItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +44,13 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_search);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapterItem = new AdapterItem(this);
         adapterItem.notifyDataSetChanged();
+
         recyclerView.setAdapter(adapterItem);
         searchViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SearchViewModel.class);
         svSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -83,4 +96,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }

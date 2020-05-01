@@ -7,6 +7,8 @@ import com.faresa.githubsearchuser.pojo.follower.FollowerResponse;
 import com.faresa.githubsearchuser.pojo.following.FollowingResponse;
 import com.faresa.githubsearchuser.pojo.search.SearchResponse;
 
+import java.util.ArrayList;
+
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.DELETE;
@@ -33,9 +35,9 @@ public interface Service {
    Call<SearchResponse> searchUser(@Header("Authorization") String authorization,
                                    @Query("q") String username);
 
-   @DELETE("divisi/{id}")
-   Call<FollowerResponse> Follower(@Header("Authorization") String authorization,
-                                        @Path("id") int id);
+   @GET("users/{username}/followers")
+   Call<ArrayList<FollowerResponse>> Follower(@Header("Authorization") String authorization,
+                                       @Path("username") String username);
 
    @DELETE("divisi/{id}")
    Call<FollowingResponse> Following(@Header("Authorization") String authorization,
