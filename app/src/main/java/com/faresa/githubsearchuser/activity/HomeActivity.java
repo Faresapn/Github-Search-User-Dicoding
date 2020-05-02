@@ -16,7 +16,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.faresa.githubsearchuser.R;
-import com.faresa.githubsearchuser.adapter.AdapterItem;
+import com.faresa.githubsearchuser.adapter.AdapterSearch;
 import com.faresa.githubsearchuser.pojo.search.SearchData;
 import com.faresa.githubsearchuser.viewmodel.SearchViewModel;
 
@@ -26,7 +26,7 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     SearchView svSearch;
     private SearchViewModel searchViewModel;
-    private AdapterItem adapterItem;
+    private AdapterSearch adapterSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +40,10 @@ public class HomeActivity extends AppCompatActivity {
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapterItem = new AdapterItem(this);
-        adapterItem.notifyDataSetChanged();
+        adapterSearch = new AdapterSearch(this);
+        adapterSearch.notifyDataSetChanged();
 
-        recyclerView.setAdapter(adapterItem);
+        recyclerView.setAdapter(adapterSearch);
         searchViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SearchViewModel.class);
         svSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -65,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onChanged(ArrayList<SearchData> searchUserItems) {
                 if (searchUserItems.size() != 0) {
-                    adapterItem.setData(searchUserItems);
+                    adapterSearch.setData(searchUserItems);
                 } else {
                     Toast.makeText(HomeActivity.this, "No Result", Toast.LENGTH_SHORT).show();
                 }
@@ -81,7 +81,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId()== R.id.favorite){
+        if (item.getItemId()== R.id.Fav){
             startActivity(new Intent(this,FavoriteActivity.class));
         }else if (item.getItemId() == R.id.set){
             startActivity(new Intent(this, FavoriteActivity.class));

@@ -3,13 +3,10 @@ package com.faresa.githubsearchuser.adapter;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,11 +20,10 @@ import com.faresa.githubsearchuser.activity.HomeActivity;
 import com.faresa.githubsearchuser.pojo.search.SearchData;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 
-public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
+public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.ViewHolder> {
     private ArrayList<SearchData> data = new ArrayList<>();
     private HomeActivity homeActivity;
 
@@ -38,12 +34,8 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void clearData() {
-        this.data.clear();
-        notifyDataSetChanged();
-    }
 
-    public AdapterItem(HomeActivity homeActivity) {
+    public AdapterSearch(HomeActivity homeActivity) {
         this.homeActivity = homeActivity;
 
     }
@@ -52,13 +44,13 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolder> {
 
     @NonNull
     @Override
-    public AdapterItem.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterSearch.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.items, parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final AdapterItem.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final AdapterSearch.ViewHolder holder, final int position) {
         SearchData item = data.get(position);
 
         Glide.with(holder.itemView.getContext())
