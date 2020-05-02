@@ -1,2 +1,3 @@
 rootProject.name='GithubSearchUser'
 include ':app'
+include ':favoritegithub'

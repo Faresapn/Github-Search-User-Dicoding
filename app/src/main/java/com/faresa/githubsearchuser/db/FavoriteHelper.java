@@ -60,7 +60,7 @@ public class FavoriteHelper {
                 null,
                 null,
                 null,
-                TITLE+ " ASC",
+                ID+ " ASC",
                 null);
         cursor.moveToFirst();
         UserResponse userResponse;
@@ -90,11 +90,11 @@ public class FavoriteHelper {
         return db.delete(TABLE_FAVORITE_NAME, TITLE + " = '" + title + "'", null);
     }
     public Cursor cursorFavoriteGet() {
-        return db.query(DB_TABLE, null, null, null, null, null, MediaStore.Audio.Playlists.Members.TITLE+" ASC");
+        return db.query(DB_TABLE, null, null, null, null, null, ID+" ASC");
     }
     public Cursor cursorFavoriteGetId(String id) {
         return db.query(DB_TABLE, null
-                , MediaStore.Audio.Playlists.Members.TITLE + " = ?"
+                , ID + " = ?"
                 , new String[]{id}
                 , null
                 , null
@@ -105,7 +105,7 @@ public class FavoriteHelper {
         return db.delete(TABLE_FAVORITE_NAME, ID+ "=?",new String[]{id});
     }
     public int favoriteUpdateProvider(String id, ContentValues values) {
-        return db.update(DB_TABLE, values, MediaStore.Audio.Playlists.Members.TITLE + " =?", new String[]{id});
+        return db.update(DB_TABLE, values, ID + " =?", new String[]{id});
     }
     public long favoriteInsertProvider(ContentValues values) {
         return db.insert(DB_TABLE, null, values);

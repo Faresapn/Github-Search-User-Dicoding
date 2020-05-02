@@ -55,7 +55,7 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.ViewHolder
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getAvatarUrl())
-                .apply(new RequestOptions().override(55, 55))
+                .apply(new RequestOptions().override(120, 120))
                 .into(holder.imageView);
 
         holder.nama.setText(item.getLogin());

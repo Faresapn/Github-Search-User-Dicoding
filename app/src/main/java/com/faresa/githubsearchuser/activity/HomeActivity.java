@@ -84,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
         if (item.getItemId()== R.id.Fav){
             startActivity(new Intent(this,FavoriteActivity.class));
         }else if (item.getItemId() == R.id.set){
-            startActivity(new Intent(this, FavoriteActivity.class));
+            startActivity(new Intent(this, ActivitySetting.class));
         }
         return super.onOptionsItemSelected(item);
     }

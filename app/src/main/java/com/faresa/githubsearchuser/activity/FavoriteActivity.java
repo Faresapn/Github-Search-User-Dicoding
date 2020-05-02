@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.faresa.githubsearchuser.R;
 import com.faresa.githubsearchuser.adapter.AdapterFollowing;
@@ -53,6 +54,7 @@ public class FavoriteActivity extends AppCompatActivity {
         super.onResume();
         list = favoriteHelper.getAllFavorites();
         adapter.setData(list);
+        Log.d("cekkkkk", String.valueOf(list));
 
     }
 

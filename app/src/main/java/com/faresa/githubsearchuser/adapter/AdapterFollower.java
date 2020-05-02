@@ -44,7 +44,7 @@ public class AdapterFollower extends RecyclerView.Adapter<AdapterFollower.ViewHo
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getAvatarUrl())
-                .apply(new RequestOptions().override(55, 55))
+                .apply(new RequestOptions().override(100, 100))
                 .into(holder.imageView);
 
         holder.nama.setText(item.getLogin());
