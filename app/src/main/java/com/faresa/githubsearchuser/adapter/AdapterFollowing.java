@@ -1,7 +1,5 @@
 package com.faresa.githubsearchuser.adapter;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.faresa.githubsearchuser.FollowerFragment;
-import com.faresa.githubsearchuser.FollowingFragment;
 import com.faresa.githubsearchuser.R;
-import com.faresa.githubsearchuser.activity.DetailActivity;
-import com.faresa.githubsearchuser.pojo.follower.FollowerResponse;
 import com.faresa.githubsearchuser.pojo.following.FollowingResponse;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class AdapterFollowing extends RecyclerView.Adapter<AdapterFollowing.ViewHolder> {
     private ArrayList<FollowingResponse> data = new ArrayList<>();

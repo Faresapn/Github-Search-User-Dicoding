@@ -63,8 +63,10 @@ public class SearchData implements Parcelable {
 
 	@SerializedName("organizations_url")
 	private String organizationsUrl;
+	public  SearchData(){
 
-	protected SearchData(Parcel in) {
+	}
+	public SearchData(Parcel in) {
 		this.gistsUrl = in.readString();
 		this.reposUrl = in.readString();
 		this.followingUrl = in.readString();
@@ -80,7 +82,7 @@ public class SearchData implements Parcelable {
 		this.eventsUrl = in.readString();
 		this.htmlUrl = in.readString();
 		this.siteAdmin = in.readByte() != 0;
-		this.id = in.readInt();
+		this.id = (Integer) in.readValue(Integer.class.getClassLoader());
 		this.gravatarId = in.readString();
 		this.nodeId = in.readString();
 		this.organizationsUrl = in.readString();
@@ -299,8 +301,8 @@ public class SearchData implements Parcelable {
 		dest.writeString(this.htmlUrl);
 		dest.writeByte((byte) (siteAdmin ? 1 : 0));
 		dest.writeInt(this.id);
-		dest.writeString(gravatarId);
-		dest.writeString(nodeId);
-		dest.writeString(organizationsUrl);
+		dest.writeString(this.gravatarId);
+		dest.writeString(this.nodeId);
+		dest.writeString(this.organizationsUrl);
 	}
 }

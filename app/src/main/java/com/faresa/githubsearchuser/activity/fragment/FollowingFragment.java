@@ -1,4 +1,4 @@
-package com.faresa.githubsearchuser;
+package com.faresa.githubsearchuser.activity.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.faresa.githubsearchuser.R;
 import com.faresa.githubsearchuser.activity.DetailActivity;
-import com.faresa.githubsearchuser.adapter.AdapterFollower;
 import com.faresa.githubsearchuser.adapter.AdapterFollowing;
-import com.faresa.githubsearchuser.pojo.follower.FollowerResponse;
 import com.faresa.githubsearchuser.pojo.following.FollowingResponse;
-import com.faresa.githubsearchuser.viewmodel.FollowerViewModel;
 import com.faresa.githubsearchuser.viewmodel.FollowingViewModel;
 
 import java.util.ArrayList;

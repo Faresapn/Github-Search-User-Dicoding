@@ -3,8 +3,17 @@
     package="com.faresa.githubsearchuser">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+<!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
+<!--    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
+
+    <permission
+        android:name="com.faresa.githubsearchuser.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.faresa.githubsearchuser.WRITE_DATABASE"
+        android:protectionLevel="normal" />
 
     <application
         android:allowBackup="true"

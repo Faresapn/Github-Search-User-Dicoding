@@ -11,35 +11,45 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.media.Image;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.faresa.githubsearchuser.FollowerFragment;
-import com.faresa.githubsearchuser.FollowingFragment;
+import com.faresa.githubsearchuser.activity.fragment.FollowerFragment;
+import com.faresa.githubsearchuser.activity.fragment.FollowingFragment;
 import com.faresa.githubsearchuser.R;
+import com.faresa.githubsearchuser.db.DbContract;
+import com.faresa.githubsearchuser.db.FavoriteDbHelper;
+import com.faresa.githubsearchuser.db.FavoriteHelper;
 import com.faresa.githubsearchuser.pojo.UserResponse;
+import com.faresa.githubsearchuser.pojo.follower.FollowerResponse;
 import com.faresa.githubsearchuser.pojo.search.SearchData;
-import com.faresa.githubsearchuser.viewmodel.SearchViewModel;
 import com.faresa.githubsearchuser.viewmodel.UserViewModel;
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
+import static com.faresa.githubsearchuser.db.DbContract.FavoriteColoumn.TABLE_FAVORITE_NAME;
+
 public class DetailActivity extends AppCompatActivity {
+    UserViewModel userViewModel;
     public static String currentuser;
+
     ImageView imgProfile;
     TextView Name,Username,Location,Email,Website;
-    UserResponse userResponse;
-    UserViewModel userViewModel;
-    UserResponse tc;
+
     private ViewPager viewpager;
     TabLayout tabLayout;
+
+    private FavoriteHelper favoriteHelper ;
+    UserResponse user;
+    ArrayList<UserResponse> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +61,10 @@ public class DetailActivity extends AppCompatActivity {
         Email = findViewById(R.id.email);
         Website = findViewById(R.id.website);
         imgProfile = findViewById(R.id.img_profile);
+        final MaterialFavoriteButton favBtn = findViewById(R.id.fav_btn);
+        favoriteHelper = FavoriteHelper.getInst(getApplicationContext());
+        favoriteHelper.open();
+
         tabLayout = findViewById(R.id.navtab);
         viewpager = findViewById(R.id.viewpager);
         viewpager.setAdapter(new viewpageradapter(getSupportFragmentManager(), tabLayout.getTabCount()));
@@ -72,7 +86,7 @@ public class DetailActivity extends AppCompatActivity {
 
             }
         });
-        currentuser =intent.getStringExtra("ID");
+        currentuser = intent.getStringExtra("ID");
         userViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(UserViewModel.class);
         userViewModel.loadEvent(currentuser);
         userViewModel.getData().observe(this, new Observer<UserResponse>() {
@@ -86,8 +100,55 @@ public class DetailActivity extends AppCompatActivity {
                 Glide.with(getApplicationContext())
                         .load(userResponse.getAvatarUrl())
                         .into(imgProfile);
+
+
+                if (Exist(currentuser)){
+                    favBtn.setFavorite(true);
+                    favBtn.setOnFavoriteChangeListener(
+                            new MaterialFavoriteButton.OnFavoriteChangeListener() {
+                                @Override
+                                public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
+                                    if (favorite){
+                                        list = favoriteHelper.getAllFavorites();
+                                        favoriteHelper.favoriteInsert(userResponse);
+                                        Toast toast = Toast.makeText(getApplicationContext(),"Ditambahkan Favorite",Toast.LENGTH_SHORT);
+                                        toast.show();
+
+                                    }
+                                    else {
+                                        list = favoriteHelper.getAllFavorites();
+                                        favoriteHelper.favoriteDelete(currentuser);
+                                        Toast toast = Toast.makeText(getApplicationContext(),"Dihapus Favorite",Toast.LENGTH_SHORT);
+                                        toast.show();
+                                    }
+                                }
+                            });
+
+                }else {
+                    favBtn.setOnFavoriteChangeListener(
+                            new MaterialFavoriteButton.OnFavoriteChangeListener() {
+                                @Override
+                                public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
+                                    if (favorite){
+                                        list = favoriteHelper.getAllFavorites();
+                                        favoriteHelper.favoriteInsert(userResponse);
+                                        Toast toast = Toast.makeText(getApplicationContext(),"Ditambahkan Favorite",Toast.LENGTH_SHORT);
+                                        toast.show();
+
+                                    }
+                                    else {
+                                        list = favoriteHelper.getAllFavorites();
+                                        favoriteHelper.favoriteDelete(currentuser);
+                                        Toast toast = Toast.makeText(getApplicationContext(),"Dihapus Favorite",Toast.LENGTH_SHORT);
+                                        toast.show();
+                                    }
+                                }
+                            });
+                }
+
             }
         });
+
     }
     public class viewpageradapter extends FragmentStatePagerAdapter {
         int mNumofTabs;
@@ -115,5 +176,25 @@ public class DetailActivity extends AppCompatActivity {
         public int getCount() {
             return mNumofTabs;
         }
+    }
+    public boolean Exist(String item) {
+        String pilih = DbContract.FavoriteColoumn.TITLE+" =?";
+        String[] pilihArg = {item};
+        String limit = "1";
+        favoriteHelper = new FavoriteHelper(this);
+        favoriteHelper.open();
+        FavoriteDbHelper dataBaseHelper = new FavoriteDbHelper(DetailActivity.this);
+        SQLiteDatabase database = dataBaseHelper.getWritableDatabase();
+        Cursor cursor = database.query(TABLE_FAVORITE_NAME, null, pilih, pilihArg, null, null, null, limit);
+        boolean exists;
+        exists = (cursor.getCount() > 0);
+        cursor.close();
+
+        return exists;
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        favoriteHelper.close();
     }
 }
