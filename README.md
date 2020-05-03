@@ -15,5 +15,5 @@ Dibangun Menggunakan :
 3. Retrofit
 4. Content Provider
 
-# noted
+# Noted
 **DILARANG KERAS PLAGIAT GUNAKAN SOURCE CODE HANYA SEBAGAI REFERENSI**
