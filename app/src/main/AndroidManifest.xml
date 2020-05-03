@@ -26,10 +26,8 @@
         <activity android:name=".activity.ActivitySetting" />
         <activity android:name=".activity.FavoriteActivity" />
         <activity android:name=".activity.HomeActivity">
-
         </activity>
         <activity android:name=".activity.MainActivity" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
