@@ -8,3 +8,12 @@ Aplikasi Github Search User Merupakan Aplikasi Tugas Akhir Dari Course Dicoding.
 3. Pencarian User Github
 4. Melihat Detail User
 5. Melihat Follower dan Following User
+
+Dibangun Menggunakan :
+1. MVVM Architecture
+2. Penyimpanan Lokal SQLITE
+3. Retrofit
+4. Content Provider
+
+#noted
+*DILARANG KERAS PLAGIAT GUNAKAN SOURCE CODE HANYA SEBAGAI REFERENSI*
