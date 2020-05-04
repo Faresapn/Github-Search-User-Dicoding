@@ -33,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         svSearch = findViewById(R.id.search);
+        svSearch.setQueryHint("Cari User");
         recyclerView = findViewById(R.id.rv_search);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
