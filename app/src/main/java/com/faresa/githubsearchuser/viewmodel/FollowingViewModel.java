@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.faresa.githubsearchuser.BuildConfig;
 import com.faresa.githubsearchuser.koneksi.Client;
 import com.faresa.githubsearchuser.koneksi.Service;
 import com.faresa.githubsearchuser.pojo.follower.FollowerResponse;
@@ -21,8 +22,9 @@ public class FollowingViewModel extends ViewModel {
     private MutableLiveData<ArrayList<FollowingResponse>> Userdata;
     public void loadEvent(String username) {
         try {
+            String apiKey = BuildConfig.TOKEN;
             Service service = Client.getClient().create(Service.class);
-            Call<ArrayList<FollowingResponse>> eventCall = service.Following("token 1bb5e29e5bbf784ff05c6853434bcbc43a9a6c58",username);
+            Call<ArrayList<FollowingResponse>> eventCall = service.Following(apiKey,username);
             eventCall.enqueue(new Callback<ArrayList<FollowingResponse>>() {
 
                 private Response<ArrayList<FollowingResponse>> response;

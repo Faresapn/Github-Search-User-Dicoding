@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.faresa.githubsearchuser.BuildConfig;
 import com.faresa.githubsearchuser.R;
 import com.faresa.githubsearchuser.koneksi.Client;
 import com.faresa.githubsearchuser.koneksi.Service;
@@ -26,9 +27,9 @@ public class SearchViewModel extends ViewModel {
 
     public void loadEvent(String query) {
         try {
-            String token = String.valueOf(R.string.auth);
+            String apiKey = BuildConfig.TOKEN;
             Service service = Client.getClient().create(Service.class);
-            Call<SearchResponse> eventCall = service.searchUser("token 1bb5e29e5bbf784ff05c6853434bcbc43a9a6c58",query);
+            Call<SearchResponse> eventCall = service.searchUser(apiKey,query);
             eventCall.enqueue(new Callback<SearchResponse>() {
 
                 @Override

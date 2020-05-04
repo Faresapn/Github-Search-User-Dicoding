@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.faresa.githubsearchuser.BuildConfig;
 import com.faresa.githubsearchuser.R;
 import com.faresa.githubsearchuser.koneksi.Client;
 import com.faresa.githubsearchuser.koneksi.Service;
@@ -23,8 +24,9 @@ public class UserViewModel extends ViewModel {
     private MutableLiveData<UserResponse> Userdata;
     public void loadEvent(String username) {
         try {
+            String apiKey = BuildConfig.TOKEN;
             Service service = Client.getClient().create(Service.class);
-            Call<UserResponse> eventCall = service.detailUser("token 1bb5e29e5bbf784ff05c6853434bcbc43a9a6c58",username);
+            Call<UserResponse> eventCall = service.detailUser(apiKey,username);
             eventCall.enqueue(new Callback<UserResponse>() {
 
                 private Response<UserResponse> response;
