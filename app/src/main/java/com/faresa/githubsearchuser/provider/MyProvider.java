@@ -19,7 +19,7 @@ import static com.faresa.githubsearchuser.db.DbContract.FavoriteColoumn.FAVORITE
 import static com.faresa.githubsearchuser.db.DbContract.FavoriteColoumn.TABLE_FAVORITE_NAME;
 
 public class MyProvider extends ContentProvider {
-    FavoriteHelper movieHelper;
+    FavoriteHelper favoriteHelper;
 
     static final int FAVORITE=10;
     static final int FAVORITE_ID=11;
@@ -35,8 +35,8 @@ public class MyProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        movieHelper = new FavoriteHelper(getContext());
-        movieHelper.open();
+        favoriteHelper = new FavoriteHelper(getContext());
+        favoriteHelper.open();
         return true;
     }
 
@@ -47,10 +47,10 @@ public class MyProvider extends ContentProvider {
         Cursor cursor;
         switch (URI_MATCHER.match(uri)){
             case FAVORITE:
-                cursor = movieHelper.cursorFavoriteGet();
+                cursor = favoriteHelper.cursorFavoriteGet();
                 break;
             case FAVORITE_ID:
-                cursor = movieHelper.cursorFavoriteGetId(uri.getLastPathSegment());
+                cursor = favoriteHelper.cursorFavoriteGetId(uri.getLastPathSegment());
                 break;
             default:
                 cursor=null;
@@ -76,7 +76,7 @@ public class MyProvider extends ContentProvider {
 
         switch (URI_MATCHER.match(uri)) {
             case FAVORITE:
-                added = movieHelper.favoriteInsertProvider(values);
+                added = favoriteHelper.favoriteInsertProvider(values);
                 if (added > 0) {
                     contentUri = ContentUris.withAppendedId(FAVORITE_URI, added);
                 }
@@ -97,7 +97,7 @@ public class MyProvider extends ContentProvider {
         int deleted;
         switch (URI_MATCHER.match(uri)){
             case FAVORITE_ID:
-                deleted = movieHelper.favoriteDeleteProvider(uri.getLastPathSegment());
+                deleted = favoriteHelper.favoriteDeleteProvider(uri.getLastPathSegment());
                 break;
                 default:
                     deleted = 0;
@@ -118,7 +118,7 @@ public class MyProvider extends ContentProvider {
         int updated;
         switch (URI_MATCHER.match(uri)) {
             case FAVORITE_ID:
-                updated = movieHelper.favoriteUpdateProvider(uri.getLastPathSegment(), values);
+                updated = favoriteHelper.favoriteUpdateProvider(uri.getLastPathSegment(), values);
                 break;
 
             default:

@@ -45,8 +45,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-        UserResponse movie = getItems(i);
-        holder.bind(movie);
+        UserResponse user = getItems(i);
+        holder.bind(user);
     }
 
 
@@ -70,11 +70,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
 
         }
 
-        public void bind(UserResponse movie) {
-            Log.d("login",movie.getLogin());
-            nama.setText(movie.getLogin());
+        public void bind(UserResponse user) {
+            Log.d("login",user.getLogin());
+            nama.setText(user.getLogin());
             Glide.with(itemView.getContext())
-                    .load(movie.getAvatarUrl())
+                    .load(user.getAvatarUrl())
                     .apply(new RequestOptions().override(120, 120))
                     .into(imageView);
         }

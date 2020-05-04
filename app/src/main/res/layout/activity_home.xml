@@ -28,8 +28,8 @@
             android:layout_margin="10dp"
             android:background="@android:color/white"
             android:iconifiedByDefault="false"
-
-            android:queryHint="Cari surah"
+            android:theme="@style/AppSearchView"
+            android:queryHint="Cari User"
             android:searchIcon="@drawable/ic_search_black_24dp" />
     </com.google.android.material.appbar.AppBarLayout>
     <ProgressBar
