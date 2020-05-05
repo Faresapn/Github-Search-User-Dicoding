@@ -21,4 +21,4 @@ Dibangun Menggunakan :
 
 **GUNAKAN API KEY GITHUB ANDA SENDIRI**
 
-![Home](img/sertifikat_course.pdf)
+![Sertifikat Kelulusan Saya](img/sertifikat_course.pdf)
