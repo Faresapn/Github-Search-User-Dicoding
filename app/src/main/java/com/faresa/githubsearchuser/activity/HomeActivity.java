@@ -13,6 +13,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.faresa.githubsearchuser.R;
@@ -27,7 +29,7 @@ public class HomeActivity extends AppCompatActivity {
     SearchView svSearch;
     private SearchViewModel searchViewModel;
     private AdapterSearch adapterSearch;
-
+    private LinearLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
         svSearch = findViewById(R.id.search);
         svSearch.setQueryHint("Cari User");
         recyclerView = findViewById(R.id.rv_search);
+        layout = findViewById(R.id.img);
+        layout.setVisibility(View.VISIBLE);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -56,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
+                layout.setVisibility(View.GONE);
                 searchViewModel.loadEvent(newText);
                 return false;
             }
