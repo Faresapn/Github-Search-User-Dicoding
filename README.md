@@ -17,3 +17,8 @@ Dibangun Menggunakan :
 
 # Noted
 **DILARANG KERAS PLAGIAT GUNAKAN SOURCE CODE HANYA SEBAGAI REFERENSI**
+
+
+**GUNAKAN API KEY GITHUB ANDA SENDIRI**
+
+![Sertifikat Kelulusan Saya](img/sertifikat_course.pdf)
