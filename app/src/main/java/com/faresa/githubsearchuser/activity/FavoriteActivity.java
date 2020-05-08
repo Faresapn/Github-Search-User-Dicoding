@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.faresa.githubsearchuser.R;
 import com.faresa.githubsearchuser.adapter.AdapterFollowing;
@@ -21,12 +23,13 @@ public class FavoriteActivity extends AppCompatActivity {
     ArrayList<UserResponse> list = new ArrayList<>();
     private FavoriteHelper favoriteHelper;
     private FavoriteAdapter adapter;
-
+    private LinearLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
-
+        layout = findViewById(R.id.img);
+        layout.setVisibility(View.VISIBLE);
         favoriteHelper = FavoriteHelper.getInst(FavoriteActivity.this);
         favoriteHelper.open();
         RecyclerView rv = findViewById(R.id.rv_favorite);
@@ -40,6 +43,7 @@ public class FavoriteActivity extends AppCompatActivity {
                 showSelectedItem(userResponse);
             }
         });
+
         rv.setAdapter(adapter);
     }
 
@@ -52,15 +56,11 @@ public class FavoriteActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        layout.setVisibility(View.GONE);
         list = favoriteHelper.getAllFavorites();
         adapter.setData(list);
         Log.d("cekkkkk", String.valueOf(list));
 
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-//        movieHelper.close();
-    }
 }
