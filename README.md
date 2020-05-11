@@ -2,7 +2,7 @@
 ![Home](img/githubsearch.png)
 
 
-Aplikasi Github Search User Merupakan Aplikasi Tugas Akhir Dari Course Dicoding.com Belajar Fundamental Aplikasi Android dengan fitur2 :
+Aplikasi Github Search User Merupakan Aplikasi Tugas Akhir Dari Course Dicoding.com Belajar Fundamental Aplikasi Android dengan fitur fitur :
 1. Daily Reminder
 2. Menambahkan User Favorite dengan SQLITE 
 3. Pencarian User Github
