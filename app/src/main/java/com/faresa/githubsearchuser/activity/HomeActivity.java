@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.faresa.githubsearchuser.ProfileActivity;
 import com.faresa.githubsearchuser.R;
 import com.faresa.githubsearchuser.adapter.AdapterSearch;
 import com.faresa.githubsearchuser.pojo.search.SearchData;
@@ -90,6 +91,8 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(this,FavoriteActivity.class));
         }else if (item.getItemId() == R.id.set){
             startActivity(new Intent(this, ActivitySetting.class));
+        } else if (item.getItemId() == R.id.profile){
+            startActivity(new Intent(this, ProfileActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
